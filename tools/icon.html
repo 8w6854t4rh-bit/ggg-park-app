@@ -1,0 +1,31 @@
+<!doctype html><meta charset="utf-8">
+<style>@font-face{font-family:BG;src:url(fonts/bricolage-grotesque-latin-800-normal.woff2);font-weight:800}body{margin:0}</style>
+<canvas id="c" width="1024" height="1024"></canvas>
+<script>
+// App-Icon der GGG Park App. Zeichnet auf 1024 px; das Bild füllt die Fläche (maskable), Wichtiges liegt in der inneren 70-%-Zone.
+async function draw(){
+  await document.fonts.load("800 100px BG");
+  const c=document.getElementById("c"),g=c.getContext("2d"),S=1024;
+  const INK="#1b1340",TANG="#ff5b2e",SUN="#ffe45c",MINT="#2ee6a6";
+  // Hintergrund: Tangerine mit Punktraster
+  g.fillStyle=TANG;g.fillRect(0,0,S,S);
+  g.fillStyle="rgba(27,19,64,.13)";for(let y=16;y<S;y+=44)for(let x=16+((y/44)%2)*22;x<S;x+=44){g.beginPath();g.arc(x,y,5,0,7);g.fill()}
+  // Schild: gelbes Quadrat, gekippt, harter Schatten
+  g.save();g.translate(S/2,S/2-20);g.rotate(-7*Math.PI/180);
+  const w=520,r=92;
+  const rr=(x,y,w,h,r)=>{g.beginPath();g.moveTo(x+r,y);g.arcTo(x+w,y,x+w,y+h,r);g.arcTo(x+w,y+h,x,y+h,r);g.arcTo(x,y+h,x,y,r);g.arcTo(x,y,x+w,y,r);g.closePath()};
+  g.fillStyle=INK;rr(-w/2+30,-w/2+30,w,w,r);g.fill();
+  g.fillStyle=SUN;rr(-w/2,-w/2,w,w,r);g.fill();g.lineWidth=26;g.strokeStyle=INK;g.stroke();
+  g.fillStyle=INK;g.font="800 470px BG";g.textAlign="center";g.textBaseline="alphabetic";g.fillText("P",8,170);
+  g.restore();
+  // GGG-Plakette unten
+  g.save();g.translate(S/2+40,S/2+300);g.rotate(4*Math.PI/180);
+  const bw=360,bh=120;
+  g.fillStyle=INK;rr(-bw/2+16,-bh/2+16,bw,bh,60);g.fill();
+  g.fillStyle=MINT;rr(-bw/2,-bh/2,bw,bh,60);g.fill();g.lineWidth=18;g.strokeStyle=INK;g.stroke();
+  g.fillStyle=INK;g.font="800 96px BG";g.textAlign="center";g.textBaseline="middle";g.fillText("GGG",0,6);
+  g.restore();
+  document.title="ready";
+}
+draw();
+</script>

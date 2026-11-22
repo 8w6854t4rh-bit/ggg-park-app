@@ -1,0 +1,17 @@
+{
+  "name": "GGG Park App",
+  "short_name": "GGG Park",
+  "description": "Lehrerparkplatz der Geschwister-Graf-Gesamtschule in 3D ansehen und mit Kennzeichen reservieren.",
+  "lang": "de",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#ffe45c",
+  "theme_color": "#ff5b2e",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
